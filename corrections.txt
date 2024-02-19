@@ -1,0 +1,8 @@
+<p>	
+    <label for="formationC"> Avez-vous déjà suivi une autre formation continue dans le domaine? </label>
+    <select id="formationC" name="formationC">
+        <option value="1">Oui </option>     
+        <option value="2">Non</option>
+    </select>
+</p>
+In your original code, the closing </select> tag was outside the <p> tag. I've corrected it in the snippet above.

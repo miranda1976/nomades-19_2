@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h1>{{ usertype }} Dashboard</h1>
+    <p>Welcome to the {{ usertype }} Console, <b>{{ username }}</b>. You are a <b>{{ usertype }}.</br></p>
+
+    {% if usertype == 'Administrator' %}
+        <!-- Display admin-specific content -->
+        <p>This is the admin dashboard.</p>
+		<button type="button" onclick="displayQuestionnaires()">Display Answered Questionnaires</button>
+
+		<div id="result-container">
+		<!-- Display the result here -->
+		</div>
+
+    {% elif usertype == 'Professor' %}
+        <!-- Display professor content -->
+        <p>This is the professor dashboard.</p>
+				<button type="button" onclick="displayQuestionnaires1()">Display Answered Questionnaires</button>
+			<div id="result-container1">
+			<!-- Display the result here -->
+				</div>
+        <!-- Add other professor content as needed -->
+    {% endif %}
+<script>
+    function displayQuestionnaires1() {
+        $.ajax({
+            type: 'GET',
+            url: '/dashboard/displayquestionnaires', // Your Flask route
+            dataType: 'json', // Expect JSON response
+            success: function(response) {
+                if ('error' in response) {
+                    console.error(response.error);
+                    return;
+                }
+
+                // Extract data from the JSON response
+                var data1 = response.data;
+
+                // Construct an HTML table
+                var table1 = '<table border="1"><tr><th>enseignantevaluation</th><th>enseignantPedagogue</th><th>evaluationYear</th></tr>';
+
+                for (var i = 0; i < data1.length; i++) {
+                    // Convert the evaluationDate to a JavaScript Date object
+                    var dateObject = new Date(data1[i].evaluationDate);
+
+                    // Get the year using getFullYear()
+                    var year = dateObject.getFullYear();
+
+                    table1 += '<tr><td>' + data1[i].enseignantevaluation1 + '</td><td>' + data1[i].enseignantPedagogue1 + '</td><td>' + year + '</td></tr>';
+                }
+
+                table1 += '</table>';
+
+                // Update the page content with the table
+                $('#result-container1').html(table1);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+</script>
+
+<script>
+    function displayQuestionnaires() {
+        $.ajax({
+            type: 'GET',
+            url: '/dashboard/displayquestionnaires',  // Your Flask route
+            dataType: 'json',  // Expect JSON response
+            success: function(response) {
+                if ('error' in response) {
+                    console.error(response.error);
+                    return;
+                }
+
+                // Extract data from the JSON response
+                var data = response.data;
+
+                // Construct an HTML table
+                var table = '<table border="1"><tr><th>First Name</th><th>Last Name</th><th>Score Sum</th><th>Percentage</th></tr>';
+				
+                // Function to sum the digits of a number
+                function sumDigits(number) {
+                    return number.toString().split('').reduce(function (acc, digit) {
+                        return acc + parseInt(digit);
+                    }, 0);
+                }
+
+                for (var i = 0; i < data.length; i++) {
+                    // Calculate the sum of the digits in each variable
+                    var scoreSum = sumDigits(data[i].perspectivesPro) +
+                        sumDigits(data[i].utiliteFuture) + sumDigits(data[i].utiliteFormation) +
+                        sumDigits(data[i].utiliteConnaissance) + sumDigits(data[i].utiliteDeviez) +
+                        sumDigits(data[i].utiliteGlobale) + sumDigits(data[i].niveauConnaissances) +
+                        sumDigits(data[i].utiliteMethode) + sumDigits(data[i].utiliteCompetences) +
+                        sumDigits(data[i].utiliteClarte) + sumDigits(data[i].utiliteDisponibilite) +
+                        sumDigits(data[i].utiliteCompe1) + sumDigits(data[i].utiliteCompe2) +
+                        sumDigits(data[i].utiliteCompe3) + sumDigits(data[i].utiliteCompe4) +
+                        sumDigits(data[i].enseignants) + sumDigits(data[i].enseignantevaluation1) +
+                        sumDigits(data[i].enseignantPedagogue1) + sumDigits(data[i].enseignantevaluation2) +
+                        sumDigits(data[i].enseignantPedagogue2) + sumDigits(data[i].enseignantsAvis) +
+                        sumDigits(data[i].enseignantExperience) + sumDigits(data[i].enseignantEnseignement) +
+                        sumDigits(data[i].enseignantMethode) + sumDigits(data[i].enseignantSupport) +
+                        sumDigits(data[i].StaffCompetentes) + sumDigits(data[i].StaffDisponibles) +
+                        sumDigits(data[i].StaffRepondu) + sumDigits(data[i].formationClasser);
+                    var percentage = (scoreSum / 116 * 100).toFixed(2);
+                    table += '<tr><td>' + data[i].firstName + '</td><td>' + data[i].lastName + '</td><td>' + scoreSum + '</td><td>' + percentage + '%</td></tr>';
+                }
+
+                table += '</table>';
+
+                // Update the page content with the table
+                $('#result-container').html(table);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+</script>
+
+	<br>
+	<form action="{{ url_for('logout') }}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

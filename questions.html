@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'évaluation</title>
+</head>
+
+<body>
+
+    <h2>EVALUATION</h2>
+    <p>(Vous pouvez remplir ce questionnaire de manière complètement anonyme. Votre avis nous intéresse)</p>
+
+    <!-- Replace "logo_url" with the actual URL of your logo  <img src="logo_url" alt="Logo"> -->
+    
+
+	<!-- οταν ο χρηστης κανει submit το ερωτηματολογιο, καλεις την συναρτηση αυτη απο τον κωδικα Python -->
+	<form action="{{ url_for('questionnairesubmit') }}" method="post">
+
+    <h2>FORMATIONS</h2>
+    <label for="formationSelect">Choix de formation:</label>
+    <select id="formationSelect" name="formationSelect">
+        <option value="DMM">DMM (Digital Marketing Manager)</option>
+        <option value="WD">WD (Web Designer)</option>
+        <option value="WPr">WPr (Web Programmer)</option>
+        <option value="PSE">PSE (Python Software Engineer)</option>
+        <option value="PDA">PDA (Python Data Analytics)</option>
+        <option value="DSST">DSST (Data Science Statistiques)</option>
+        <option value="DSML">DSML (Data Science Machine Learning)</option>
+    </select>
+
+    <label for="startDate">Date début:</label>
+    <input type="date" id="startDate" name="startDate">
+
+    <label for="endDate">Date fin:</label>
+    <input type="date" id="endDate" name="endDate">
+
+<p>
+    <label for="sessionsSelect">Sessions:</label>
+	<select id="sessionsSelect" name="sessionsSelect">
+
+	<option value="1"> 1</option>
+    <option value="2"> 2 </option>
+	
+	<option value="3"> 3 </option>
+    <option value="4"> 4 </option>
+	
+	</select>
+	<label for="trimestreSelect">Trimestre:</label>	
+	<select id="trimestreSelect" name="trimestreSelect">
+
+	<option value="1"> 1</option>
+    <option value="2"> 2 </option>
+	
+	<option value="3"> 3 </option>
+    <option value="4"> 4 </option>
+	
+	</select></p>
+  
+
+    <label for="firstName">Prénom:</label>
+    <input type="text" id="firstName" name="firstName">
+
+    <label for="profession">Profession:</label>
+    <input type="text" id="profession" name="profession">
+
+    <label for="lastName">Nom:</label>
+    <input type="text" id="lastName" name="lastName">
+<p>
+    <label for="evaluationDate">Date de l'évaluation:</label>
+    <input type="date" id="evaluationDate" name="evaluationDate">
+	
+	
+	</p>
+    <h2>Contexte & Environnèment de l'évaluateur</h2>
+<p>
+    <label for="formationPrincipale">Quelle est votre formation principale:</label>
+    <select id="formationPrincipale" name="formationPrincipale">
+        <option value="Scolaire">Scolaire</option>
+        <option value="Professionnelle">Professionnelle</option>
+        <option value="Académique">Académique</option>
+        <option value="Autodidacte">Autodidacte</option>
+        <option value="Universitaire">Universitaire</option>
+        <option value="Autre">Autre</option>
+    </select>
+</p>
+<p>
+    <label for="perspectivesPro">Pensez-vous que la formation suivie peut vous ouvrir des nouvelles perspectives professionnelles:</label>
+    <select id="perspectivesPro" name="perspectivesPro"> <!-- V1 -->
+        <option value="0">NON</option>
+        <option value="1">PEUT ETRE</option>
+        <option value="3">PROBABLEMENT</option>
+        <option value="4">OUI</option>
+    </select>
+</p>
+<p>
+    <label for="situationActuelle">Quelle est votre situation professionnelle actuelle:</label>
+    <select id="situationActuelle" name="situationActuelle">
+        <option value="AI">AI</option>
+        <option value="Transition">Transition d'emploi</option>
+        <option value="Free_lance">Free-lance</option>
+        <option value="Indépendant">Indépendant</option>
+        <option value="En_emploi">En emploi</option>
+        <option value="Associé_Owner">Associé, Owner</option>
+        <option value="Retraité">Retraité</option>
+    </select>
+</p>
+<p>
+    <label for="utilisationConnaissances">Utiliserez-vous les connaissances acquises dans le cadre de vos activités professionnelles actuelles:</label>
+    <select id="utilisationConnaissances" name="utilisationConnaissances">
+        <option value="NON">NON</option>
+        <option value="PEUT_ETRE">PEUT ETRE</option>
+        <option value="OUI">OUI</option>
+    </select>
+</p>
+<p>
+    <label for="utiliteFuture">Estimez-vous qu'elles peuvent être d'une utilité pour vous à l'avenir:</label>
+    <select id="utiliteFuture" name="utiliteFuture"> <!-- V2 -->
+        <option value="0">AUCUNE</option>
+        <option value="1">REDUITE</option>
+        <option value="2">MOYENNE</option>
+        <option value="3">GRANDE</option>
+        <option value="4">MAJEURE</option>
+    </select>
+</p>
+  <h2>Évaluation de la formation suivier Valuers:</h2>
+<p>
+    <label for="utiliteFormation">La formation a-t-elle correspondu à votre attente quant à son contenu:</label>
+    <select id="utiliteFormation" name="utiliteFormation"> <!-- V3 -->
+        <option value="0">Pas du tout</option>
+        <option value="1">Partiellement</option>
+        <option value="2">Oui</option>
+        <option value="3">Entièrement</option>
+        <option value="4">Au-delà des attentes</option>
+    </select>
+</p>
+<p>
+    <label for="utiliteConnaissance">Vos connaissances préalables ont-elles été suffisantes pour aborder le cours:</label>
+    <select id="utiliteConnaissance" name="utiliteConnaissance"> <!-- V4 -->
+        <option value="0">Non</option>
+        <option value="1"> A peine</option>
+        <option value="2">Oui</option>
+        <option value="3">Sans problème</option>
+        <option value="4">Largement</option>
+		
+		
+    </select>
+</p>
+<p>
+    <label for="utiliteDeviez">Si vous deviez juger l'enseignement, qu'elle réponse vous semblerait la plus pertinente	:</label>
+    <select id="utiliteDeviez" name="utiliteDeviez"> <!-- V5 -->
+        <option value="0">NUL</option>
+        <option value="1"> BASIQUE</option>
+        <option value="2">MOYEN</option>
+        <option value="3"> BON</option>
+        <option value="4">EXCELLENT</option>
+    </select>
+</p>
+
+<b>Comment évaluez-vous (veuillez mettre une croix dans la case correspondante)	</b>
+<p>MAUVAIS - INSUFFISANT - SUFFISANT - BIEN - TRES BIEN</p>
+
+<p>
+<label for="utiliteGlobale">• d'une façon globale, le programme de formation suivi 	</label>
+    <select id="utiliteGlobale" name="utiliteGlobale"> <!-- V7 -->
+        <option value="0">MAUVAIS</option>
+        <option value="1"> INSUFFISANT</option>
+        <option value="2">SUFFISANT</option>
+        <option value="3"> BIEN</option>
+        <option value="4">TRES BIEN</option>
+		 </select>
+</p>	
+
+<p>
+<label for="niveauConnaissances">• le niveau des connaissances imparties		</label>
+    <select id="niveauConnaissances" name="niveauConnaissances"> <!-- V8 -->
+        <option value="0">MAUVAIS</option>
+        <option value="1"> INSUFFISANT</option>
+        <option value="2">SUFFISANT</option>
+        <option value="3"> BIEN</option>
+        <option value="4">TRES BIEN</option>
+		 </select>
+</p>	
+<p>
+  <label for="utiliteMethode">• la méthode didactique </label>
+  <select id="utiliteMethode" name="utiliteMethode">  <!-- V10 -->
+    <option value="0">MAUVAIS</option>
+    <option value="1">INSUFFISANT</option>
+    <option value="2">SUFFISANT</option>
+    <option value="3">BIEN</option>
+    <option value="4">TRES_BIEN</option>
+  </select>
+</p>
+
+<p>
+  <label for="utiliteCompetences">• les compétences professionnelles des formateurs</label>
+  <select id="utiliteCompetences" name="utiliteCompetences"> <!-- V11 -->
+    <option value="0">MAUVAIS</option>
+    <option value="1">INSUFFISANT</option>
+    <option value="2">SUFFISANT</option>
+    <option value="3">BIEN</option>
+    <option value="4">TRES_BIEN</option>
+  </select>
+</p>
+
+<p>
+  <label for="utiliteClarte">• la clarté didactique des formateurs</label>
+  <select id="utiliteClarte" name="utiliteClarte"> <!-- V12 -->
+    <option value="0">MAUVAIS</option>
+    <option value="1">INSUFFISANT</option>
+    <option value="2">SUFFISANT</option>
+    <option value="3">BIEN</option>
+    <option value="4">TRES_BIEN</option>
+  </select>
+</p>
+
+<p>
+  <label for="utiliteDisponibilite">• leur disponibilité </label>
+  <select id="utiliteDisponibilite" name="utiliteDisponibilite">  <!-- V13 -->
+    <option value="0">MAUVAIS</option>
+    <option value="1">INSUFFISANT</option>
+    <option value="2">SUFFISANT</option>
+    <option value="3">BIEN</option>
+    <option value="4">TRES_BIEN</option>
+  </select>
+</p>
+
+<p>
+  <label for="utiliteCompe1">• le support de cours</label>
+  <select id="utiliteCompe1" name="utiliteCompe1"> <!-- V14 -->
+    <option value="0">MAUVAIS</option>
+    <option value="1">INSUFFISANT</option>
+    <option value="2">SUFFISANT</option>
+    <option value="3">BIEN</option>
+    <option value="4">TRES_BIEN</option>
+  </select>
+</p>
+
+<p>
+  <label for="utiliteCompe2">• les équipements informatiques </label>
+  <select id="utiliteCompe2" name="utiliteCompe2">  <!-- V15 -->
+    <option value="0">MAUVAIS</option>
+    <option value="1">INSUFFISANT</option>
+    <option value="2">SUFFISANT</option>
+    <option value="3">BIEN</option>
+    <option value="4">TRES_BIEN</option>
+  </select>
+</p>
+
+<p>
+  <label for="utiliteCompe3">• les locaux </label>
+  <select id="utiliteCompe3" name="utiliteCompe3">  <!-- V16 -->
+    <option value="0">MAUVAIS</option>
+    <option value="1">INSUFFISANT</option>
+    <option value="2">SUFFISANT</option>
+    <option value="3">BIEN</option>
+    <option value="4">TRES_BIEN</option>
+  </select>
+</p>
+
+<p>
+  <label for="utiliteCompe4">• l'ambiance et l'environnement </label>
+  <select id="utiliteCompe4" name="utiliteCompe4">  <!-- V17 -->
+    <option value="0">MAUVAIS</option>
+    <option value="1">INSUFFISANT</option>
+    <option value="2">SUFFISANT</option>
+    <option value="3">BIEN</option>
+    <option value="4">TRES_BIEN</option>
+  </select>
+</p>
+
+<p>
+	<label for="apprécié">	Qu'avez-vous le plus apprécié dans cette formation:</label>
+    <input type="text" id="apprécié" name="apprécié">																						
+</p>
+<p>		
+ <label for="appréciéMoins">	Qu'avez-vous le moins apprecié dans cette formation :</label>
+    <input type="text" id="appréciéMoins" name="appréciéMoins">																						
+	</p>																			
+
+  <h2>Les enseignants
+  </h2>
+
+<p>	
+    <label for="enseignants">Plusieurs enseignants ont participé dans la formation, estimez vous cette pluralité d'enseignants</label>
+    <select id="enseignants" name="enseignants"> <!-- V18 -->
+        <option value="0"> PAS SOUHAITABLE </option>
+        <option value="1">SANS IMPORTANCE</option>
+        <option value="3">SOUHAITABLE</option>
+        <option value="4">TRES SOUHAITABLE</option>
+    </select>
+</p>
+
+
+    <label for="enseignants">Pouvez-vous nous donner votre appréciation sur les enseignants qui sont intervenus dans votre formation (y compris le travail de projet) :
+</label>
+<p>> Antonio PISSANELO:
+	 <select id="enseignantevaluation1" name="enseignantevaluation1"> <!-- V19 -->
+		<option value="" selected></option>
+        <option value="0 "> PAS COMPETENT </option>
+        <option value="1">PEU COMPETENT</option>
+		<option value="2">  COMPETENT</option>
+		<option value="3">  TRES COMPETENT</option>
+		<option value="4">  EXCELLENT</option>
+    </select>
+	<select id="enseignantPedagogue1" name="enseignantPedagogue1"> <!-- V20 -->
+		<option value="" selected></option>
+        <option value="0 "> PAS PEDAGOGUE </option>
+        <option value="2">PEDAGOGUE </option>
+		<option value="4">  BON PEDAGOGUE</option>
+    </select></br></br>
+	> Louis REYNOUARD:
+	<select id="enseignantevaluation2" name="enseignantevaluation2"> <!-- V21 -->
+		<option value="" selected></option>
+        <option value="0 "> PAS COMPETENT </option>
+        <option value="1">PEU COMPETENT</option>
+		<option value="2">  COMPETENT</option>
+		<option value="3">  TRES COMPETENT</option>
+		<option value="4">  EXCELLENT</option>
+    </select>
+	<select id="enseignantPedagogue2" name="enseignantPedagogue2"> <!-- V22 -->
+		<option value="" selected></option>
+        <option value="0 "> PAS PEDAGOGUE </option>
+        <option value="2">PEDAGOGUE </option>
+		<option value="4">  BON PEDAGOGUE</option>
+    </select>
+   </p>
+
+<p>		
+ <label for="commentaires">	Avez-vous des commentaires sur des enseignants en particulier?</label>
+    <input type="text" id="commentaires" name="commentaires">																						
+	</p>	
+
+<p>	
+    <label for="enseignantsAvis">Pouvez-vous nous donner votre avis sur la qualité de l'équipe d'enseignants dans son ensemble ?</label>
+    <select id="enseignantsAvis" name="enseignantsAvis"> <!-- V29 -->
+        <option value="0">FAIBLE </option>     
+        <option value="1">MOYENNE</option>
+        <option value="2">BONNE</option>
+        <option value="3">TRES BONNE</option>
+		<option value="4">EXCELLENTE</option>
+    </select>
+</p>
+	
+<p>		
+ <label for="commentaireséquipe">	Commentaires sur l'équipe d'enseignants</label>
+    <input type="text" id="commentaireséquipe" name="commentaireséquipe">																						
+	</p>	
+	
+
+  <h2>L'enseignement pratique(Mèthode de Projet)		
+
+  </h2>
+  
+  <p>	
+    <label for="enseignantExperience">L'expérience pratique vous semble t'il utile dans l'enseignement que vous avez suivi	</label>
+    <select id="enseignantExperience" name="enseignantExperience">  <!-- V30 -->
+        <option value="0">PAS UTILE </option>     
+        <option value="1">PEU UTILE</option>
+        <option value="3">UTILE</option>
+        <option value="4">TRES UTILE</option>
+
+    </select>
+</p>
+
+  <p>	
+    <label for="enseignantEnseignement"> La part de l'enseignement pratique vous semble-t-elle suffisante?	</label>
+    <select id="enseignantEnseignement" name="enseignantEnseignement"> <!-- V31 -->
+        <option value="0">PAS DU TOUT </option>     
+        <option value="1">INSUFFISANTE</option>
+        <option value="3">SUFFISANTE</option>
+        <option value="4">TRES BIEN</option>
+
+    </select>
+</p>
+
+ <p>	
+    <label for="enseignantMethode">La mèthode del'enseignement pratique (exercices, TP,  projet personnel) vous semble t'il 	</label>
+    <select id="enseignantMethode" name="enseignantMethode">  <!-- V32 -->
+        <option value="0">PAS UTILE </option>     
+        <option value="1">PEU UTILE</option>
+        <option value="3">UTILE</option>
+        <option value="4">TRES UTILE</option>
+
+    </select>
+</p>
+   <p>	
+    <label for="enseignantSupport"> Le support fourni est' il :		</label>
+    <select id="enseignantSupport" name="enseignantSupport"> <!-- V33 -->
+        <option value="0">INEXISTANT </option>     
+        <option value="1">INSUFFISANT</option>
+        <option value="2">SUFFISANT</option>
+        <option value="3">TRES BIEN</option>
+		<option value="4">EXCELLENT</option>
+
+    </select>
+</p>														
+<p>		
+ <label for="commentairesEns">	Commentaires:</label>
+    <input type="text" id="commentairesEns" name="commentairesEns">																						
+	</p>	
+
+  <h2>L'encadrement 		(Staff)	
+  </h2>
+  <p>	Quelle appréciation portez-vous sur la direction et l'encadrement des ateliers ?:		</p>							
+	<p>NE SAIS PAS - NON - PAS ASSEZ - OUI - LARGEMENT</p>
+  <p>	
+    <label for="StaffCompetentes"> • pensez-vous que l'encadrement a été assuré par des personnes compétentes?	</label>
+    <select id="StaffCompetentes" name="StaffCompetentes"> <!-- V34 -->
+        <option value="0">NE SAIS PAS </option>     
+        <option value="1">NON</option>
+        <option value="2">PAS ASSEZ</option>
+        <option value="3">OUI</option>
+		 <option value="4">LARGEMENT</option>
+
+    </select>
+</p>
+  <p>	
+    <label for="StaffDisponibles"> • ces personnes ont-elles été suffisamment disponibles?		</label>
+    <select id="StaffDisponibles" name="StaffDisponibles"> <!-- V35 -->
+        <option value="1">NE SAIS PAS </option>     
+        <option value="2">NON</option>
+        <option value="3">PAS ASSEZ</option>
+        <option value="4">OUI</option>
+		 <option value="5">LARGEMENT</option>
+
+    </select>
+</p>
+
+		<p>	
+    <label for="StaffRepondu"> • ont-elles répondu à vos attentes?	</label>
+    <select id="StaffRepondu" name="StaffRepondu"> <!-- V36 -->
+        <option value="1">NE SAIS PAS </option>     
+        <option value="2">NON</option>
+        <option value="3">PAS ASSEZ</option>
+        <option value="4">OUI</option>
+		 <option value="5">LARGEMENT</option>
+
+    </select>
+</p>									 		 		 		 
+																		
+<p>		
+ <label for="commentaireStaff">	Commentaires:	</label>
+    <input type="text" id="commentaireStaff" name="commentaireStaff">																						
+	</p>	
+																			
+	 <h2>Le centre de formation	
+  </h2>		
+<p>	
+    <label for="formationC"> Avez-vous déjà suivi une autre formation continue dans le domaine?		</label>
+    <select id="formationC" name="formationC">
+        <option value="1">Oui </option>     
+        <option value="2">Non</option>
+		</p>		
+</select>		
+<p>	
+       <label for="formationOui">	Si oui, laquelle / lesquelles?:	</label>
+    <input type="text" id="formationOui" name="formationOui">
+    
+</p>		  
+		
+<p>	
+       <label for="Institut">	Institut ou Centre de formation: </label>
+    <input type="text" id="Institut" name="Institut">
+    
+</p>	
+
+<p>	
+       <label for="Niveau">	Niveau et  durée de la formation: </label>
+    <input type="text" id="Niveau" name="Niveau">
+
+    
+    
+	
+    
+	<input type="text" id="duree" name="duree">
+    
+    
+</p>
+<p>	
+ <label for="commentaireAttentes">	Ces formations ont' elles correspondu à vos attentes?	:	</label>
+    <input type="text" id="commentaireAttentes" name="commentaireAttentes">																						
+	</p>
+	
+	<p>	
+	<label for="formationClasser"> 	Pouvez-vous classer nomades par rapport à d'autres centres de formation?	 </label>
+    <select id="formationClasser" name="formationClasser"> <!-- V37 -->
+        <option value="1">NE SAIS PAS	 </option>     
+        <option value="2">PIRE</option>
+		 <option value="3">MOYEN	 </option>     
+        <option value="4">BON</option>
+		 <option value="5">TRES BON</option>
+		</p>
+	
+	</select>
+	<p>		
+ <label for="commentairesN">	Commentaires:</label>
+    <input type="text" id="commentairesN" name="commentairesN">																						
+	</p>
+	
+	<p>		
+	
+	<p>	
+    <label for="formationP"> Seriez-vous intéressé à poursuivre votre formation?	</label>
+    <select id="formationP" name="formationP">
+        <option value="1">Oui </option>     
+        <option value="2">Non</option>
+		</p>		
+</select>		
+<p>	
+       <label for="formationD">	Si oui, dans quel domaine?	</label>
+    <input type="text" id="formationD" name="formationD">
+    
+</p>		 
+		
+ <label for="commentairesS">	Vos suggestions::</label>
+    <input type="text" id="commentairesS" name="commentairesS">																						
+	</p>
+	
+	
+	 <label for="DateToday">Date :</label>
+    <input type="date" id="DateToday" name="DateToday">
+
+
+</br></br>
+  <input type="submit" value="Submit">
+</form>
+
+</body></html>
